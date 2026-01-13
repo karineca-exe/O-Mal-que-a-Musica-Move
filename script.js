@@ -22,18 +22,34 @@ function enterDM() {
 const SUPABASE_URL = "https://ejpobxmuvubxjaofwnue.supabase.co";
 const SUPABASE_KEY = "sb_publishable_vsAqJjiLD2twwQkE5qTMYA_9PH2mmY8";
 
-// IMPORTANTE: NÃO use o nome supabase aqui
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// TESTE
-async function teste() {
+async function selectCharacter(nomePersonagem) {
   const { data, error } = await db
-    .from('players')
-    .select('*');
+    .from('personagens')
+    .select('*')
+    .eq('nome', nomePersonagem)
+    .single();
 
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
+  if (error) {
+    alert("Erro ao buscar personagem");
+    return;
+  }
+
+  if (data.is_taken) {
+    alert("Esse personagem já foi escolhido.");
+    return;
+  }
+
+  await db
+    .from('personagens')
+    .update({ is_taken: true })
+    .eq('id', data.id);
+
+  localStorage.setItem('personagem_id', data.id);
+
+  alert(`Você escolheu ${data.nome}`);
+  window.location.href = "ficha.html";
 }
 
-teste();
 
