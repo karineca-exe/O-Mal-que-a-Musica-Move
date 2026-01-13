@@ -1,0 +1,21 @@
+function selectCharacter(characterId) {
+  localStorage.setItem('role', 'player');
+  localStorage.setItem('character', characterId);
+
+  alert(`Você escolheu ${characterId.toUpperCase()}`);
+  
+  // futuramente redireciona para ficha
+  // window.location.href = "ficha.html";
+}
+
+function enterDM() {
+  const senha = prompt("Digite a senha do DM:");
+
+  if (senha === "ritualfinal") {
+    localStorage.setItem('role', 'dm');
+    alert("Bem-vinda, Mestra.");
+    // window.location.href = "dm.html";
+  } else {
+    alert("O Outro Lado não te reconhece.");
+  }
+}
