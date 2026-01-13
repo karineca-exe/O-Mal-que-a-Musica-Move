@@ -19,3 +19,7 @@ function enterDM() {
     alert("O Outro Lado não te reconhece.");
   }
 }
+const SUPABASE_URL = "https://ejpobxmuvubxjaofwnue.supabase.com";
+const SUPABASE_KEY = "sb_publishable_vsAqJjiLD2twwQkE5qTMYA_9PH2mmY8";
+
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
