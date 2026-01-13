@@ -1,29 +1,59 @@
 const SUPABASE_URL = "https://ejpobxmuvubxjaofwnue.supabase.co";
 const SUPABASE_KEY = "sb_publishable_vsAqJjiLD2twwQkE5qTMYA_9PH2mmY8";
 
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
+// ID DO PERSONAGEM (por enquanto fixo)
+const PERSONAGEM_ID = 1;
+
+// BUSCAR DADOS
 async function carregarFicha() {
-  const id = localStorage.getItem('personagem_id');
-
-  const { data } = await db
-    .from('personagens')
-    .select('*')
-    .eq('id', id)
+  // PERSONAGEM
+  const { data: personagem, error } = await supabase
+    .from("personagens")
+    .select("*")
+    .eq("id", PERSONAGEM_ID)
     .single();
 
-  document.getElementById('nome').innerText = data.nome;
-  document.getElementById('classe').innerText = `${data.classe} • NEX ${data.nex}%`;
+  if (error) {
+    console.error(error);
+    return;
+  }
 
-  document.getElementById('pv').innerText = data.pv;
-  document.getElementById('pe').innerText = data.pe;
-  document.getElementById('san').innerText = data.san;
+  // PREENCHER CABEÇALHO
+  document.getElementById("nome-personagem").textContent = personagem.nome;
+  document.getElementById("classe-nex").textContent =
+    `${personagem.classe} — NEX ${personagem.nex}%`;
 
-  document.getElementById('for').innerText = data.forca;
-  document.getElementById('agi').innerText = data.agilidade;
-  document.getElementById('int').innerText = data.intelecto;
-  document.getElementById('pre').innerText = data.presenca;
-  document.getElementById('vig').innerText = data.vigor;
+  // ATRIBUTOS
+  document.getElementById("for").textContent = personagem.for;
+  document.getElementById("agi").textContent = personagem.agi;
+  document.getElementById("int").textContent = personagem.int;
+  document.getElementById("pre").textContent = personagem.pre;
+  document.getElementById("vig").textContent = personagem.vig;
+
+  // STATUS
+  document.getElementById("pv").textContent = personagem.pv;
+  document.getElementById("pe").textContent = personagem.pe;
+  document.getElementById("san").textContent = personagem.san;
+
+  // PERÍCIAS
+  const { data: pericias } = await supabase
+    .from("pericias")
+    .select("*")
+    .eq("personagem_id", PERSONAGEM_ID);
+
+  const lista = document.getElementById("lista-pericias");
+  lista.innerHTML = "";
+
+  pericias.forEach(pericia => {
+    const li = document.createElement("li");
+    li.textContent = `${pericia.nome} +${pericia.bonus}`;
+    lista.appendChild(li);
+  });
 }
 
 carregarFicha();
