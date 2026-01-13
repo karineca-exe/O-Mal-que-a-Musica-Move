@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Ficha</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Ficha do Personagem</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1 id="nome"></h1>
-<p id="classe"></p>
+  <main class="ficha">
 
-<div>
-  <strong>PV:</strong> <span id="pv"></span><br>
-  <strong>PE:</strong> <span id="pe"></span><br>
-  <strong>SAN:</strong> <span id="san"></span>
-</div>
+    <!-- CABEÇALHO -->
+    <section class="header">
+      <h1 id="nome-personagem">Nome</h1>
+      <p id="classe-nex">Classe — NEX</p>
+    </section>
 
-<h2>Atributos</h2>
-<ul>
-  <li>FOR: <span id="for"></span></li>
-  <li>AGI: <span id="agi"></span></li>
-  <li>INT: <span id="int"></span></li>
-  <li>PRE: <span id="pre"></span></li>
-  <li>VIG: <span id="vig"></span></li>
-</ul>
+    <!-- ATRIBUTOS -->
+    <section class="bloco">
+      <h2>Atributos</h2>
+      <div class="atributos">
+        <div>FOR <span id="for"></span></div>
+        <div>AGI <span id="agi"></span></div>
+        <div>INT <span id="int"></span></div>
+        <div>PRE <span id="pre"></span></div>
+        <div>VIG <span id="vig"></span></div>
+      </div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="ficha.js"></script>
+    <!-- STATUS -->
+    <section class="bloco">
+      <h2>Status</h2>
+      <div class="status">
+        <div>PV <span id="pv"></span></div>
+        <div>PE <span id="pe"></span></div>
+        <div>SAN <span id="san"></span></div>
+      </div>
+    </section>
+
+    <!-- PERÍCIAS -->
+    <section class="bloco">
+      <h2>Perícias</h2>
+      <ul id="lista-pericias"></ul>
+    </section>
+
+  </main>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
