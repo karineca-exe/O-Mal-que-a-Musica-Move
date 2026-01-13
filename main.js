@@ -1,13 +1,17 @@
-// SUPABASE
+// ==========================
+// SUPABASE CONFIG
+// ==========================
 const SUPABASE_URL = "https://ejpobxmuvubxjaofwnue.supabase.com";
-const SUPABASE_KEY = "SUA_CHAVE_PUBLICA_AQUI";
+const SUPABASE_KEY = "sb_publishable_vsAqJjiLD2twwQkE5qTMYA_9PH2mmY8";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
+// ==========================
 // ESCOLHA DE PERSONAGEM
+// ==========================
 function escolherPersonagem(personagemId) {
   localStorage.setItem("personagem_id", personagemId);
   localStorage.setItem("role", "player");
@@ -16,7 +20,9 @@ function escolherPersonagem(personagemId) {
   window.location.href = "ficha.html";
 }
 
+// ==========================
 // ENTRADA DO DM
+// ==========================
 function entrarDM() {
   const senha = prompt("Digite a senha do DM:");
 
