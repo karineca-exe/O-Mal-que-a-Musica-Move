@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>O Mal que a Música Move</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Se quiser adicionar fontes, faça aqui (opcional) -->
 </head>
 <body>
+  <main class="hub" role="main" aria-labelledby="titulo-hub">
 
-  <main class="hub">
-
-    <section class="intro">
+    <header class="intro" id="titulo-hub">
       <h1>🕯️ O Mal que a Música Move</h1>
       <p>
         A música ecoa em Vale das Cordas.  
         Escolha quem você é… antes que o som escolha por você.
       </p>
-    </section>
+    </header>
 
-    <section class="characters">
+    <section class="characters" aria-label="Escolha de personagens">
       <h2>Escolha sua personagem</h2>
 
-      <div class="card" onclick="escolherPersonagem(1)">
+      <button class="card" onclick="escolherPersonagem(1)" aria-pressed="false">
         <h3>Antonio “Melo”</h3>
         <p>Combatente • Guitarrista • Estrada</p>
-      </div>
+      </button>
 
-      <div class="card" onclick="escolherPersonagem(2)">
+      <button class="card" onclick="escolherPersonagem(2)" aria-pressed="false">
         <h3>Leonardo Martins</h3>
         <p>Ocultista • Fotógrafo • Ritual</p>
-      </div>
+      </button>
     </section>
 
-    <section class="dm">
-      <button onclick="entrarDM()">🔐 Entrar como DM</button>
+    <section class="dm" aria-label="Entrada do Mestre">
+      <button class="dm-button" onclick="entrarDM()">🔐 Entrar como DM</button>
     </section>
 
   </main>
 
+  <!-- ----- SCRIPTS ----- -->
+  <!-- 1) Incluir o cliente Supabase UMA única vez -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2) Seu script principal (uma única inclusão). 
+       Certifique-se de não incluir main.js em outro lugar também. -->
   <script src="main.js"></script>
 </body>
 </html>
+
