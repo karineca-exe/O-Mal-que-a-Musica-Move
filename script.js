@@ -23,3 +23,14 @@ const SUPABASE_URL = "https://ejpobxmuvubxjaofwnue.supabase.com";
 const SUPABASE_KEY = "sb_publishable_vsAqJjiLD2twwQkE5qTMYA_9PH2mmY8";
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+}
+async function teste() {
+  const { data, error } = await supabase
+    .from('players')
+    .select('*');
+
+  console.log(data, error);
+}
+
+teste();
+
