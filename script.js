@@ -3,8 +3,6 @@ function selectCharacter(characterId) {
   localStorage.setItem('character', characterId);
 
   alert(`Você escolheu ${characterId.toUpperCase()}`);
-  
-  // futuramente redireciona para ficha
   // window.location.href = "ficha.html";
 }
 
@@ -19,17 +17,22 @@ function enterDM() {
     alert("O Outro Lado não te reconhece.");
   }
 }
+
+// CONFIG SUPABASE
 const SUPABASE_URL = "https://ejpobxmuvubxjaofwnue.supabase.com";
 const SUPABASE_KEY = "sb_publishable_vsAqJjiLD2twwQkE5qTMYA_9PH2mmY8";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-}
+// IMPORTANTE: NÃO use o nome supabase aqui
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// TESTE
 async function teste() {
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from('players')
     .select('*');
 
-  console.log(data, error);
+  console.log("DATA:", data);
+  console.log("ERROR:", error);
 }
 
 teste();
